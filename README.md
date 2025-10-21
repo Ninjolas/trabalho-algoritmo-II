@@ -94,4 +94,4 @@ O programa apresenta um menu principal com acesso aos módulos de gerenciamento 
 
 ### Compilação (Exemplo com GCC)
 ```bash
-gcc seu_arquivo.c -o trabalho_aed2 -lm -Wall -Wextra -pedantic
+gcc arquivo.c -o trabalho_aed2 -lm -Wall -Wextra -pedantic
