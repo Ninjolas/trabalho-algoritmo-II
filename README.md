@@ -22,10 +22,10 @@ O programa utiliza o `jewelry.csv` como entrada e gera/manipula os seguintes arq
 [cite_start]Contêm registros de **tamanho fixo** [cite: 37][cite_start], ordenados pela chave primária[cite: 27]. [cite_start]Campos de texto são preenchidos com espaços à direita (`pad_string`) para manter o tamanho fixo[cite: 38]. Cada registro termina com `\n`[cite: 39]. A remoção é implementada logicamente através do campo `ativo` ('S' ou 'N')[cite: 52].
 
 * **`produtos.bin`:** Armazena um catálogo de produtos únicos extraídos do CSV.
-    * **Chave Primária:** `product_id` (int), permite valores positivos, negativos ou zero (desde que únicos).
+    * **Chave Primária:** `product_id` (int64_t), permite valores positivos, negativos ou zero (desde que únicos).
     * [cite_start]**Ordenação:** Ordenado crescentemente por `product_id`[cite: 32].
     * **Estrutura do Registro (`Produto`):**
-        * `int product_id`
+        * `**int64_t** product_id`
         * `char brand[50]`
         * `double price`
         * `char category_alias[100]`
@@ -49,7 +49,7 @@ O programa utiliza o `jewelry.csv` como entrada e gera/manipula os seguintes arq
 [cite_start]Arquivos de índice parcial para a chave primária de cada arquivo de dados[cite: 46, 48]. Um par `(chave, offset)` é armazenado para cada bloco de `BLOCO_INDICE` (definido como 100) registros *ativos* no arquivo de dados.
 
 * **`produtos_idx.bin`:** Índice para `produtos.bin`.
-    * **Estrutura:** Sequência de `IndiceProduto { int chave; long offset; }`.
+    * **Estrutura:** Sequência de `IndiceProduto { **int64_t** chave; long offset; }`.
 
 * **`compras_idx.bin`:** Índice para `compras.bin`.
     * **Estrutura:** Sequência de `IndiceCompra { long long chave; long offset; }`.
@@ -94,4 +94,4 @@ O programa apresenta um menu principal com acesso aos módulos de gerenciamento 
 
 ### Compilação (Exemplo com GCC)
 ```bash
-gcc arquivo.c -o trabalho_aed2 -lm -Wall -Wextra -pedantic
+gcc arquivo.c -o trabalho_aed2 -Wall -Wextra -pedantic
